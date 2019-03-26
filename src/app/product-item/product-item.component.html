@@ -1,0 +1,16 @@
+<div class="product" [class]="OnSale ? 'OnSale product card' : 'product card' ">
+  <div class=image>
+    <img class="img" [src]="product.ImageURL">
+  </div>
+  <div class="container">
+    <div class="Name">
+      <h1>{{product.Name}}</h1>
+    </div>
+    <div class="price">
+      <h2>{{product.Price}} €</h2>
+    </div>
+    <button (click)="decrease()" [disabled]="product.InCart < 1">-</button>
+    <input value="{{product.InCart}}">
+    <button (click)="increase()">+</button>
+  </div>
+</div>
