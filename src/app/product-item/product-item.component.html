@@ -1,16 +1,22 @@
-<div class="product" [class]="OnSale ? 'OnSale product card' : 'product card' ">
-  <div class=image>
-    <img class="img" [src]="product.ImageURL">
-  </div>
+<mat-card class="product" *ngFor="let product of products; index as i" [class.OnSale]="product.OnSale">
+  <img mat-card-image [src]="product.ImageURL">
   <div class="container">
-    <div class="Name">
-      <h1>{{product.Name}}</h1>
-    </div>
-    <div class="price">
-      <h2>{{product.Price}} €</h2>
-    </div>
-    <button (click)="decrease()" [disabled]="product.InCart < 1">-</button>
-    <input value="{{product.InCart}}">
-    <button (click)="increase()">+</button>
+    <mat-card-content>
+      <h1 class="Name">{{product.Name}}</h1>
+      <h2 class="price">{{product.Price}} €</h2>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="decrease(i)" [disabled]="product.InCart < 1">-</button>
+      <!--<input value="{{product.InCart}}">-->
+      <mat-form-field>
+        <mat-label>Quantity</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let qty of quantities" [value]="qty">
+            {{qty}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button (click)="increase(i)">+</button>
+    </mat-card-actions>
   </div>
-</div>
+</mat-card>

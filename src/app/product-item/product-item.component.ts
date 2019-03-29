@@ -1,6 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
 
-import { Product } from "../model/product"; 
+import {
+  Product
+} from "../model/product";
+
+
 
 @Component({
   selector: 'app-product-item',
@@ -9,26 +16,32 @@ import { Product } from "../model/product";
 })
 export class ProductItemComponent implements OnInit {
 
-  product: Product
+  public products: Array < Product >
+    private quantities: Array < number >
 
-  constructor() { }
+    constructor() {}
 
   ngOnInit() {
-    this.product = {
-      Name : 'Product',
-      Price : 15.99,
-      ImageURL : 'assets/img_avatar.png',
-      OnSale : false,
-      InCart : 0
+    this.products = [
+      new Product('Product 1', 15.99, 'assets/img_avatar.png', false),
+      new Product('Product 2',  5.99, 'assets/img_avatar2.png', true),
+      new Product('Product 3', 25.49, 'assets/Product.jpg', false),
+      new Product('Product 4', 11.23, 'assets/img_avatar.png', true)
+    ]
+
+    this.quantities = [];
+    for (let i = 0; i < 20; i++) {
+      this.quantities.push(i);
     }
+
   }
 
-  increase(){
-    this.product.InCart++;
+  increase(i) {
+    this.products[i].InCart++;
   }
 
-  decrease(){
-    this.product.InCart--;
+  decrease(i) {
+    this.products[i].InCart--;
   }
 
 }

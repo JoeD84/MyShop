@@ -5,3 +5,13 @@ export interface Product {
     OnSale: boolean;
     InCart: number;
 }
+
+export class Product {
+    constructor(
+        public Name: string, 
+        public Price: number, 
+        public ImageURL: string,
+        public OnSale: boolean){
+            this.InCart = 0
+    }
+}
