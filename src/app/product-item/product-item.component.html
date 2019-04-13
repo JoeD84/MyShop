@@ -1,12 +1,17 @@
-<mat-card class="product" *ngFor="let product of products; index as i" [class.OnSale]="product.OnSale">
+<mat-card class="product" 
+  [class.OnSale]="product.OnSale">
   <img mat-card-image [src]="product.ImageURL">
-  <div class="container">
-    <mat-card-content>
+  <div class="container ">
+    <mat-card-content class="" >
       <h1 class="Name">{{product.Name}}</h1>
       <h2 class="price">{{product.Price}} €</h2>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button (click)="decrease(i)" [disabled]="product.InCart < 1">-</button>
+      <button mat-raised-button 
+        (click)="decrease(i)" 
+        [disabled]="product.InCart < 1">
+        -
+      </button>
       <!--<input value="{{product.InCart}}">-->
       <mat-form-field>
         <mat-label>Quantity</mat-label>
