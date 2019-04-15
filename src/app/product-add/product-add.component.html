@@ -1,7 +1,10 @@
-<h2>Add Product</h2>
 <mat-card>
+  <mat-card-header>
+    <h2>Add Product</h2>
+  </mat-card-header>
+  <mat-card-content>
 <div class="form-group">
-  <form (ngSubmit)="createStock(stockForm)">
+  <form (ngSubmit)="addProduct(productForm)" #productForm="ngForm" >
     <div ngModelGroup="product">
       <div class="product-name>">
         <mat-form-field>
@@ -9,9 +12,16 @@
           matInput 
           placeholder="Product Name" 
           required 
+          #productName="ngModel"
           name="name" 
           ngModel>
         </mat-form-field>
+        <div class="error" 
+          *ngIf="(productName.dirty  || message) && productName.invalid">
+          <!-- Cheating, since there is only one way the 
+            product name field could be invalid -->
+          Product name is required
+        </div>
       </div>
       <div class="product-price">
         <mat-form-field >
@@ -19,9 +29,16 @@
           matInput 
           placeholder="Price" 
           required 
-          name="price" 
+          #productPrice="ngModel"
+          name="price" step=any
           ngModel>
         </mat-form-field>
+        <div class="error" 
+          *ngIf="(productPrice.dirty  || message) && productPrice.invalid">
+          <!-- Cheating, since there is only one way 
+            the product name field could be invalid -->
+          Price is required
+        </div>
       </div>
       <div class="product-image-url>">
         <mat-form-field>
@@ -29,18 +46,41 @@
           matInput 
           placeholder="Product Image URL" 
           required 
+          #productImageUrl="ngModel"
+          pattern="^(http)(s?)\:\/\/[a-zA-Z0-9\-\.]+(\.[a-zA-Z]{2,3})?(:[0-9]+)?(\/\S*)?$"
           name="imagrUrl" 
           ngModel>
         </mat-form-field>
+        <div class="error" *ngIf="(productImageUrl.dirty || message) && productImageUrl.invalid">
+          <div *ngIf="productImageUrl.errors.required">
+            Product Image URL is required
+          </div>
+          <div *ngIf="productImageUrl.errors.pattern">
+            Product Image URL does not seem to be a valid URL
+          </div>
+        </div>
       </div>
       <div>
-          <mat-slide-toggle
-          class="example-margin"
+        <mat-slide-toggle
+          color="Primary" 
+          checked="true" 
+          ngModel 
+          name="onSale">
+          On Sale
+        </mat-slide-toggle>
+      </div>
+      <div class="submit-button">
+        <button mat-raised-button type="submit"
+          [disabled]="!productForm.valid"
           color="Primary">
-        On Sale
-      </mat-slide-toggle>
+          Add
+      </button>
       </div>
     </div>
   </form>
 </div>
+</mat-card-content>
 </mat-card>
+
+<h4>Stock Name is {{product | json}}</h4> 
+<h4>Data has been confirmed: {{confirmed}}</h4>

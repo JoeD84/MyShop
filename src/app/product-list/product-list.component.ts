@@ -19,7 +19,7 @@ export class ProductListComponent implements OnInit {
       new Product(1, 'Product 1', 15.99, 'assets/StockSnap_5A5JLDXM4R.jpg', false),
       new Product(2, 'Product 2',  5.99, 'assets/StockSnap_W3LQTILJNT.jpg', true),
       new Product(3, 'Product 3', 25.49, 'assets/StockSnap_YWGBUF1QKI.jpg', false),
-      new Product(4, 'Product 4', 11.23, 'assets/StockSnap_SJX0UPY4VO.jpg', true)
+      new Product(4, 'Product 4', 11.23, 'assets/StockSnap_SJX0UPY4VO.jpg', true) 
     ]
   }
 
